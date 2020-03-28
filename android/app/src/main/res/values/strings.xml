@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Weather Forecast</string>
+    <string name="inc">Powered by TranLamInc</string>
 </resources>

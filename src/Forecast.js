@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, Picker, ScrollView, Image, Dimensions } from 'r
 import AntdesignIcon from 'react-native-vector-icons/AntDesign';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+
 export default function Forecast({ forecast , marginTop }) {
     const times = [forecast.list[0], forecast.list[8], forecast.list[16], forecast.list[24], forecast.list[32]]
     const pickers = times.map(item => {
@@ -50,21 +53,21 @@ export default function Forecast({ forecast , marginTop }) {
                                 <View style={styles.main2}>
                                     <Text style={styles.description}>{item.weather[0].description}</Text>
                                     <View style={styles.degrees}>
-                                        <Text style={styles.minDegree}><AntdesignIcon name="arrowdown" size={20} color="white" />{(item.main.temp_min - 273.15).toFixed(2)}{'\u00b0'}</Text>
-                                        <Text style={styles.maxDegree}><AntdesignIcon name="arrowup" size={20} color="white" />{(item.main.temp_max - 273.15).toFixed(2)}{'\u00b0'}</Text>
+                                        <Text style={styles.minDegree}><AntdesignIcon name="arrowdown" size={0.05*width} color="white" />{(item.main.temp_min - 273.15).toFixed(2)}{'\u00b0'}</Text>
+                                        <Text style={styles.maxDegree}><AntdesignIcon name="arrowup" size={0.05*width} color="white" />{(item.main.temp_max - 273.15).toFixed(2)}{'\u00b0'}</Text>
                                     </View>
                                 </View>
                                 <View style={styles.attributes}>
                                     <View style={styles.attribute1}>
-                                        <EntypoIcon name="water" size={27} color="white" />
+                                        <EntypoIcon name="water" size={0.065*width} color="white" />
                                         <Text style={styles.attr}>Humidity: {(item.main.humidity)}%</Text>
                                     </View>
                                     <View style={styles.attribute2}>
-                                        <EntypoIcon name="yelp" size={27} color="white" />
+                                        <EntypoIcon name="yelp" size={0.065*width} color="white" />
                                         <Text style={styles.attr}>Pressure: {(item.main.pressure)}hPa</Text>
                                     </View>
                                     <View style={styles.attribute3}>
-                                        <AntdesignIcon name="clockcircleo" size={27} color="white" />
+                                        <AntdesignIcon name="clockcircleo" size={0.065*width} color="white" />
                                         <Text style={styles.attr}>{item.dt_txt.substring(item.dt_txt.indexOf(" ") + 1)}</Text>
                                     </View>
                                 </View>
@@ -81,40 +84,40 @@ export default function Forecast({ forecast , marginTop }) {
 const styles = StyleSheet.create({
     root: {
         alignItems: 'center',
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        width: width,
+        height: height,
     },
     header: {
         flexDirection: 'row',
-        marginTop: -10
+        marginTop: -0.01*height
     },
     title: {
         flexGrow : 1,
-        marginLeft : 30
+        marginLeft : 0.07*width
     },
     name: {
         color: 'white',
-        fontSize: 30,
+        fontSize: 0.07*width,
         textAlign: 'center'
     },
     coord: {
         color: 'white',
-        fontSize: 15,
+        fontSize: 0.035*width,
         textAlign: 'center'
     },
     pickerContainer: {
     },
     picker: {
-        width: 150,
-        height: 50,
+        width: 0.36*width,
+        height: 0.06*height,
         color: 'white',
         alignSelf: 'flex-end',
         justifyContent: 'flex-start'
     },
     detailContainer: {
         width: '93%',
-        marginBottom: 140,
-        marginTop: 10
+        marginBottom: 0.21*height,
+        marginTop: 0.03*height
     },
     scroller: {
         width: '100%',
@@ -123,38 +126,38 @@ const styles = StyleSheet.create({
     detail: {
         alignItems: 'center',
         backgroundColor: 'rgba(255,255,255,0.2)',
-        borderRadius: 10,
-        marginBottom: 10,
-        paddingVertical: 10
+        borderRadius: 0.02*width,
+        marginBottom: 0.02*height,
+        paddingVertical: 0.02*height
     },
     main1: {
         flexDirection: 'row',
-        marginTop: -30
+        marginTop: -0.03*height
     },
     image: {
         alignItems: 'center',
         flex: 1
     },
     icon: {
-        width: 100,
-        height: 100
+        width: 0.25*width,
+        height: 0.13*height
     },
     mainDegree: {
         textAlign: 'center',
         flex: 1,
         color: 'white',
         alignSelf: 'center',
-        fontSize: 30
+        fontSize: 0.07*width
     },
     main2: {
         flexDirection: 'row',
-        marginTop: -20
+        marginTop: -0.02*height
     },
     description: {
         flex: 1,
         color: 'white',
         textAlign: 'center',
-        fontSize: 17
+        fontSize: 0.04*width
     },
     degrees: {
         flex: 1,
@@ -165,13 +168,13 @@ const styles = StyleSheet.create({
         flex: 1,
         color: 'white',
         textAlign: 'center',
-        fontSize: 17
+        fontSize: 0.04*width
     },
     maxDegree: {
         flex: 1,
         color: 'white',
         textAlign: 'center',
-        fontSize: 17
+        fontSize: 0.04*width
     },
     attributes: {
         flexDirection: 'row'
@@ -179,7 +182,7 @@ const styles = StyleSheet.create({
     attribute1: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft: 10
+        paddingLeft: 0.02*width
     },
     attribute2: {
         flexDirection: 'row',
@@ -189,12 +192,11 @@ const styles = StyleSheet.create({
     attribute3: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingRight: 10
+        paddingRight: 0.02*width
     },
     attr: {
         color: 'white',
-        marginLeft: 5
+        marginLeft: 0.01*width
     },
-
 })
 

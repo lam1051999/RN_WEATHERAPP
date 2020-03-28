@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { SearchBar, ButtonGroup } from 'react-native-elements';
-import { Text, StyleSheet, View , ActivityIndicator } from 'react-native';
+import { Text, StyleSheet, View , ActivityIndicator , Dimensions } from 'react-native';
 import { WEATHER_API, FORECAST_API } from './constants/Constants';
 import Weather from './Weather';
 import AntdesignIcon from 'react-native-vector-icons/AntDesign';
 import Forecast from './Forecast';
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 export default function Search({ selectedIndex, setSelectedIndex }) {
     const [search, setSearch] = useState("")
@@ -49,9 +52,9 @@ export default function Search({ selectedIndex, setSelectedIndex }) {
                     placeholder="Enter some city name..."
                     value={search}
                     onChangeText={setSearch}
-                    containerStyle={{ marginTop: 30, borderBottomColor: 'transparent', borderTopColor: 'transparent', backgroundColor: 'transparent', flexGrow: 1 }}
-                    inputContainerStyle={{ width: isFocus ? '100%' : 50, borderRadius: 25, height: 50, backgroundColor: 'rgba(0,0,0,0.2)' }}
-                    searchIcon={<AntdesignIcon color="white" size={25} name="search1" style={{ marginLeft: 5 }} onPress={() => setIsFocus(true)} />}
+                    containerStyle={{ marginTop: 0.05*height, borderBottomColor: 'transparent', borderTopColor: 'transparent', backgroundColor: 'transparent', flexGrow: 1 }}
+                    inputContainerStyle={{ width: isFocus ? '100%' : 0.13*width, borderRadius: 0.06*width, height: 0.07*height, backgroundColor: 'rgba(0,0,0,0.2)' }}
+                    searchIcon={<AntdesignIcon color="white" size={0.06*width} name="search1" style={{ marginLeft: 0.015*width }} onPress={() => setIsFocus(true)} />}
                     inputStyle={{ width: 0, color: 'white' }}
                     onBlur={() => setIsFocus(false)}
                     round
@@ -67,7 +70,7 @@ export default function Search({ selectedIndex, setSelectedIndex }) {
                 <ButtonGroup buttons={buttons}
                     selectedIndex={selectedIndex}
                     onPress={setSelectedIndex}
-                    containerStyle={{ width: 130, backgroundColor: 'transparent', borderRadius: 10, marginBottom: 17, borderColor: 'transparent' }}
+                    containerStyle={{ width: 0.32*width, backgroundColor: 'transparent', borderRadius: 0.02*width, marginBottom: 0.02*height, borderColor: 'transparent' }}
                     textStyle={{ color: 'white' }}
                     selectedTextStyle={{ color: 'black' }}
                     selectedButtonStyle={{ backgroundColor: 'rgba(255,255,255,0.7)' }}
@@ -76,9 +79,9 @@ export default function Search({ selectedIndex, setSelectedIndex }) {
             {
                 !selectedIndex ?
                     (isLoading ? (JSON.stringify(weather) === "{}" ?<ActivityIndicator size="large" color="#fff" />
-                        : <Weather weather={weather} marginTop={-15} />)
+                        : <Weather weather={weather} marginTop={-0.017*height} />)
                         : (JSON.stringify(weather) === "{}" ? <Text style={styles.code}>Type some location to search data...</Text>
-                            : <Weather weather={weather} marginTop={-15} />))
+                            : <Weather weather={weather} marginTop={-0.017*height} />))
                     :
                     (isLoading ? (JSON.stringify(forecast) === "{}" ?<ActivityIndicator size="large" color="#fff" />
                         : <Forecast forecast={forecast} />)
@@ -92,7 +95,7 @@ export default function Search({ selectedIndex, setSelectedIndex }) {
 const styles = StyleSheet.create({
     code: {
         color: 'white',
-        fontSize: 20,
+        fontSize: 0.05*width,
         textAlign: 'center'
     },
     bar: {

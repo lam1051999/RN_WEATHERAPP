@@ -7,6 +7,9 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Divider } from 'react-native-elements';
 
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+
 export default function Weather({ weather , marginTop }) {
     const date = new Date(weather.dt * 1000)
     const minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : "" + date.getMinutes()
@@ -32,13 +35,13 @@ export default function Weather({ weather , marginTop }) {
                                 <View style={styles.main2}>
                                     <Text style={styles.description}>{weather.weather[0].description.toUpperCase()}</Text>
                                     <View style={styles.degrees}>
-                                        <Text style={styles.minDegree}><AntdesignIcon name="arrowdown" size={20} color="white" />{(weather.main.temp_min - 273.15).toFixed(2)}{'\u00b0'}</Text>
-                                        <Text style={styles.maxDegree}><AntdesignIcon name="arrowup" size={20} color="white" />{(weather.main.temp_max - 273.15).toFixed(2)}{'\u00b0'}</Text>
+                                        <Text style={styles.minDegree}><AntdesignIcon name="arrowdown" size={0.05*width} color="white" />{(weather.main.temp_min - 273.15).toFixed(2)}{'\u00b0'}</Text>
+                                        <Text style={styles.maxDegree}><AntdesignIcon name="arrowup" size={0.05*width} color="white" />{(weather.main.temp_max - 273.15).toFixed(2)}{'\u00b0'}</Text>
                                     </View>
                                 </View>
                             </View>
                             <View style={styles.time}>
-                                <AntdesignIcon name="clockcircleo" size={20} color="white" />
+                                <AntdesignIcon name="clockcircleo" size={0.05*width} color="white" />
                                 <Text style={styles.timeText}>{time} / {`${hours}:${minutes}`}</Text>
                             </View>
                         </View>
@@ -46,25 +49,25 @@ export default function Weather({ weather , marginTop }) {
                         <View style={styles.detailContainer}>
                             <ScrollView style={styles.scroller}>
                                 <View style={styles.detail}>
-                                    <EntypoIcon name="yelp" size={27} color="white" />
+                                    <EntypoIcon name="yelp" size={0.07*width} color="white" />
                                     <Text style={styles.attributes}>Pressure</Text>
                                     <Text style={styles.attrValue}>{(weather.main.pressure)}hPa</Text>
                                 </View>
                                 <Divider style={styles.divider} />
                                 <View style={styles.detail}>
-                                    <EntypoIcon name="water" size={27} color="white" />
+                                    <EntypoIcon name="water" size={0.07*width} color="white" />
                                     <Text style={styles.attributes}>Humidity</Text>
                                     <Text style={styles.attrValue}>{(weather.main.humidity)}%</Text>
                                 </View>
                                 <Divider style={styles.divider} />
                                 <View style={styles.detail}>
-                                    <FontistoIcon name="wind" size={27} color="white" />
+                                    <FontistoIcon name="wind" size={0.07*width} color="white" />
                                     <Text style={styles.attributes}>Wind speed</Text>
                                     <Text style={styles.attrValue}>{weather.wind.speed}m/s</Text>
                                 </View>
                                 <Divider style={styles.divider} />
                                 <View style={styles.detail}>
-                                    <MaterialCIcon name="weather-windy-variant" size={27} color="white" />
+                                    <MaterialCIcon name="weather-windy-variant" size={0.07*width} color="white" />
                                     <Text style={styles.attributes}>Wind direction</Text>
                                     <Text style={styles.attrValue}>{weather.wind.deg}{'\u00b0'}</Text>
                                 </View>
@@ -72,7 +75,7 @@ export default function Weather({ weather , marginTop }) {
                                     <>
                                         <Divider style={styles.divider} />
                                         <View style={styles.detail}>
-                                            <MaterialIcon name="visibility" size={27} color="white" />
+                                            <MaterialIcon name="visibility" size={0.07*width} color="white" />
                                             <Text style={styles.attributes}>Visibility</Text>
                                             <Text style={styles.attrValue}>{(weather.visibility / 1000).toFixed(2)} km</Text>
                                         </View>
@@ -81,7 +84,7 @@ export default function Weather({ weather , marginTop }) {
                                     <>
                                         <Divider style={styles.divider} />
                                         <View style={styles.detail}>
-                                            <EntypoIcon name="cloud" size={27} color="white" />
+                                            <EntypoIcon name="cloud" size={0.07*width} color="white" />
                                             <Text style={styles.attributes}>Cloud cover</Text>
                                             <Text style={styles.attrValue}>{weather.clouds.all}%</Text>
                                         </View>
@@ -90,7 +93,7 @@ export default function Weather({ weather , marginTop }) {
                                     <>
                                         <Divider style={styles.divider} />
                                         <View style={styles.detail}>
-                                            <FontistoIcon name="rain" size={27} color="white" />
+                                            <FontistoIcon name="rain" size={0.07*width} color="white" />
                                             <Text style={styles.attributes}>Rain</Text>
                                             <Text style={styles.attrValue}>{weather.rain['3h']}mm/3hours</Text>
                                         </View>
@@ -99,7 +102,7 @@ export default function Weather({ weather , marginTop }) {
                                     <>
                                         <Divider style={styles.divider} />
                                         <View style={styles.detail}>
-                                            <FontistoIcon name="snowflake-6" size={27} color="white" />
+                                            <FontistoIcon name="snowflake-6" size={0.07*width} color="white" />
                                             <Text style={styles.attributes}>Snow</Text>
                                             <Text style={styles.attrValue}>{weather.snow['3h']}mm/3hours</Text>
                                         </View>
@@ -117,8 +120,8 @@ export default function Weather({ weather , marginTop }) {
 const styles = StyleSheet.create({
     root: {
         alignItems: 'center',
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height
+        width: width,
+        height: height
     },
     container: {
         backgroundColor: 'rgba(255,255,255,0.2)',
@@ -126,12 +129,12 @@ const styles = StyleSheet.create({
         width: '93%',
     },
     name: {
-        fontSize: 30,
+        fontSize: 0.08*width,
         fontWeight: 'bold',
         color: 'white'
     },
     coord: {
-        fontSize: 15,
+        fontSize: 0.04*width,
         color: 'white'
     },
     main: {
@@ -143,60 +146,60 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     mainDegree: {
-        fontSize: 55, color: 'white',
+        fontSize: 0.13*width, color: 'white',
         flex: 1,
         textAlign: 'center',
     },
     image: { flex: 1, alignItems: 'center' },
     icon: {
-        width: 150,
-        height: 150,
+        width: 0.4*width,
+        height: 0.2*height,
     },
     main2: {
         flexDirection: 'row',
-        marginTop: -10,
+        marginTop: -0.01*height,
         width: '100%',
     },
-    description: { color: 'white', fontSize: 17, flex: 1, textAlign: 'center' },
+    description: { color: 'white', fontSize: 0.043*width, flex: 1, textAlign: 'center' },
     degrees: { flexDirection: 'row', flex: 1 },
     minDegree: {
         color: 'white',
-        fontSize: 17,
+        fontSize: 0.043*width,
         flex: 1,
         textAlign: 'center',
-        paddingLeft: 25
+        paddingLeft: 0.05*width
     },
     maxDegree: {
         color: 'white',
-        fontSize: 17,
+        fontSize: 0.043*width,
         flex: 1,
         textAlign: 'center',
-        paddingRight: 25
+        paddingRight: 0.05*width
     },
     time: {
         flexDirection: 'row',
-        margin: 10,
+        margin: 0.015*height,
         alignItems: 'center',
     },
     timeText: {
-        marginLeft: 5,
-        fontSize: 16,
+        marginLeft: 0.01*width,
+        fontSize: 0.04*width,
         color: 'white'
     },
     detailTitle: {
-        fontSize: 25,
+        fontSize: 0.06*width,
         color: 'white',
         alignSelf: 'flex-start',
-        marginVertical: 10,
-        marginLeft: 15
+        marginVertical: 0.012*height,
+        marginLeft: 0.035*width
     },
-    detailContainer: { backgroundColor: 'rgba(255,255,255,0.2)', width: '93%', flex: 1 , marginBottom : 80},
+    detailContainer: { backgroundColor: 'rgba(255,255,255,0.2)', width: '93%', flex: 1 , marginBottom :0.13*height},
     scroller: { width: '100%' },
-    detail: { flexDirection: 'row', height: 60, padding: 8, alignItems: 'center' },
+    detail: { flexDirection: 'row', height: 0.09*height, padding: 0.01*height, alignItems: 'center' },
     attributes: {
-        color: 'white', fontSize: 17, flexGrow: 1, marginLeft: 15
+        color: 'white', fontSize: 0.043*width, flexGrow: 1, marginLeft: 0.035*width
     },
-    attrValue: { color: 'white', fontSize: 17 },
+    attrValue: { color: 'white', fontSize: 0.043*width },
     divider: {
         backgroundColor: 'white',
         width: '95%',
